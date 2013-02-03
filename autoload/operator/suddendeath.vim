@@ -9,10 +9,11 @@ function! operator#suddendeath#do(motion_wise)
     echoerr 'operator-suddendeath supports linewise only'
     return
   endif
+  let put = getpos("']")[1] == line('$') ? 'p' : 'P'
   normal! `[V`]d
   let str = split(@", '\n')
   let @" = s:to_suddendeath(str)
-  normal! p
+  execute 'normal!' put
 endfunction
 
 
