@@ -10,10 +10,11 @@ function! operator#suddendeath#do(motion_wise)
     return
   endif
   let put = getpos("']")[1] == line('$') ? 'p' : 'P'
-  execute 'normal!' '`[V`]"' . v:register . 'd'
-  let str = split(getreg(v:register), '\n')
-  call setreg(v:register, s:to_suddendeath(str), 'V')
-  execute 'normal!' '"' . v:register . put
+  let reg = operator#user#register()
+  execute 'normal!' '`[V`]"' . reg . 'd'
+  let str = split(getreg(reg), '\n')
+  call setreg(reg, s:to_suddendeath(str), 'V')
+  execute 'normal!' '"' . reg . put
 endfunction
 
 
